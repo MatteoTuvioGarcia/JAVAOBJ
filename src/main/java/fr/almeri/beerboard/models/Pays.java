@@ -1,11 +1,19 @@
 package fr.almeri.beerboard.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
-
+@Entity
+@Table(name = "pays")
 public class Pays {
-
+    @Id
+    @Column(name = "nom_pays")
     private String nomPays;
+    @Column(name = "consommation")
     private double consommation;
+    @Column(name = "production")
     private double production;
 
     public Pays() {}
