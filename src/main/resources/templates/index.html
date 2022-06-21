@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-success text-white mb-4">
-                            <div class="card-body" th:text="${labelsBarChart2.size()} + ' marques'"></div>
+                            <div class="card-body" th:text="${marque} + ' marques'"></div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <!--a class="small text-white stretched-link" href="#"></a-->
                                 <div style="visibility: hidden" class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-danger text-white mb-4">
-                            <div class="card-body" th:text="${labelsPieChart.size()} + ' régions'"></div>
+                            <div class="card-body" th:text="${region} + ' régions'"></div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <!--a class="small text-white stretched-link" href="#"></a-->
                                 <div style="visibility: hidden" class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -86,7 +86,6 @@
                                 Nombre de marques référencées par brasserie
                             </div>
                             <div class="card-body"><canvas id="myBarChart1" width="100%" height="50"></canvas></div>
-                            <!--/*@thymesVar id="updated" type=""*/-->
                             <div class="card-footer small text-muted" th:text="'Dernière mise à jour : ' + ${updated}"></div>
                         </div>
                     </div>
