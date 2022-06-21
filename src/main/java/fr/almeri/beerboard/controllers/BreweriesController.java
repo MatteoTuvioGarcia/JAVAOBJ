@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 
@@ -40,5 +41,7 @@ public class BreweriesController {
 //    public String getBreweryByCode(Model pModel, @RequestParam String code){
 //        return "brewery";
 //    }
+
+
 
 }

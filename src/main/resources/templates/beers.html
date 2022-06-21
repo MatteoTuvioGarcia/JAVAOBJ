@@ -47,7 +47,7 @@
                         <td th:text="${beer.getTauxAlcool()}"/>
                         <td th:text="${beer.getCaracteristiques()}"/>
                         <td>
-                            <a th:href="@{/see-beer(marque=${beer.getMarque().getNomMarque()},version=${beer.getVersion()})}"><img src="/img/oeuil.png" width="20" height="20"/></a>
+                            <a th:href="@{/see-beer(nomMarque=${beer.getMarque().getNomMarque()},nomVersion=${beer.getVersion()})}"><img src="/img/oeuil.png" width="20" height="20"/></a>
                         </td>
                     </tr>
                     </tbody>

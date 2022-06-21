@@ -36,39 +36,39 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                 </div>
-                                <form method="post">
-
-                                    <input type="text" readonly class="form-control py-2" name="codeBrasserie"
-                                           th:value="${brasserie.getCodeBrasserie()}"/>
-
-                                    <input type="text" class="form-control py-2" name="nomBrasserie"
-                                           th:value="${brasserie.getNomBrasserie()}"/>
-
-                                    <input type="text" class="form-control py-2" name="ville"
-                                           th:value="${brasserie.getVille()}"/>
-
-                                    <select name="region" id="regionSelect">
-                                        <th:block th:each="region: ${regions}">
-                                            <th:block
-                                                    th:if="${region.getNomRegion} == ${brasserie.getRegion.getNomRegion()}">
-                                                <option selected th:value="${region.getNomRegion()}"
-                                                        th:text="${region.getNomRegion()}"/>
+                                <div class="card-body">
+                                    <form method="GET">
+                                        <label for="codeBrasserie">Code Brasserie:</label>
+                                        <input type="text" readonly class="form-control my-3" name="codeBrasserie"
+                                               id="codeBrasserie"
+                                               th:value="${brasserie.getCodeBrasserie()}"/>
+                                        <label for="nomBrasserie">Nom brasserie:</label>
+                                        <input type="text" class="form-control my-3" name="nomBrasserie"
+                                               id="nomBrasserie"
+                                               th:value="${brasserie.getNomBrasserie()}"/>
+                                        <label for="ville">Ville:</label>
+                                        <input type="text" class="form-control my-3" name="ville" id="ville"
+                                               th:value="${brasserie.getVille()}"/>
+                                        <label for="regionSelect">Région: </label>
+                                        <select name="region" id="regionSelect" class="form-select">
+                                            <th:block th:each="region: ${regions}">
+                                                <th:block
+                                                        th:if="${region.getNomRegion} == ${brasserie.getRegion.getNomRegion()}">
+                                                    <option selected th:value="${region.getNomRegion()}"
+                                                            th:text="${region.getNomRegion()}"/>
+                                                </th:block>
+                                                <th:block
+                                                        th:if="${region.getNomRegion} != ${brasserie.getRegion.getNomRegion()}">
+                                                    <option th:value="${region.getNomRegion()}"
+                                                            th:text="${region.getNomRegion()}"/>
+                                                </th:block>
                                             </th:block>
-                                            <th:block
-                                                    th:if="${region.getNomRegion} != ${brasserie.getRegion.getNomRegion()}">
-                                                <option th:value="${region.getNomRegion()}"
-                                                        th:text="${region.getNomRegion()}"/>
-                                            </th:block>
-                                        </th:block>
+                                        </select>
 
-                                        </th:block>
+                                        <button type="submit" class="btn-primary form-control my-3">Submit</button>
 
-                                        </th:block>
-                                    </select>
-
-                                    <button type="submit" class="btn-primary">Submit</button>
-
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
