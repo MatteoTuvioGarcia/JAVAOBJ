@@ -5,7 +5,9 @@ import fr.almeri.beerboard.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -41,6 +43,49 @@ public class BreweriesController {
 //    public String getBreweryByCode(Model pModel, @RequestParam String code){
 //        return "brewery";
 //    }
+
+    @GetMapping("/add-brewery")
+    public String ajouterBrasserieForm(Model model)
+    {
+        model.addAttribute("update", false);
+        model.addAttribute("brasserie", new Brasserie());
+        // regionRepository.getListeNomRegionObjAsc() retourne la liste des régions
+        model.addAttribute("listeRegion", regionRepository.getListeNomRegionObjAsc());
+
+        return "add-brewery";
+    }
+
+    /**
+     * Traitement des données formulaire ajout/modification
+     * @param brasserie
+     * @param model
+     * @return
+     */
+    @PostMapping("/add-brewery")
+    public String ajouterBrasserie (@Validated @ModelAttribute Brasserie brasserie, Model model)
+    {
+        // Création d'une brasserie + enregistrement dans la base de données.
+        brasserieRepository.save(brasserie);
+
+        return "redirect:/breweries";
+    }
+
+    /**
+     * Affiche le formulaire en modification en incluant
+     * les données d'une brasserie
+     * @param model
+     * @param code
+     * @return
+     */
+    @GetMapping("/update-brewery/{code}")
+    public String modifierBrasserieForm(Model model,@PathVariable String code)
+    {
+        model.addAttribute("update", true);
+        model.addAttribute("brasserie", brasserieRepository.findById(code));
+        model.addAttribute("listeRegion", regionRepository.getListeNomRegionObjAsc());
+
+        return "brasserie/ajouter";
+    }
 
 
 

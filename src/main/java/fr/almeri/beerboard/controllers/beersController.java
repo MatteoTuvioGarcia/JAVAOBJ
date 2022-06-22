@@ -5,7 +5,10 @@ import fr.almeri.beerboard.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ public class beersController {
     @Autowired
     private MarqueRepository marqueRepository;
     @Autowired
-    private BrasserieRepository brasserieRepository;
+    private TypeRepository typeRepository;
 
     @GetMapping("/beers")
     public String getPageExemple(Model pModel)
@@ -38,6 +41,25 @@ public class beersController {
         Biere beer = biereRepository.findById(bid).orElseThrow();
         pModel.addAttribute("biere", beer);
         return "beer";
+    }
+
+    @GetMapping("/add-beer")
+    public String addBeerForm(Model pModel)
+    {
+        pModel.addAttribute("biere", new Biere());
+        pModel.addAttribute("update", false);
+        pModel.addAttribute("listeType", typeRepository.findAll());
+        pModel.addAttribute("listeMarque", marqueRepository.findAll());
+
+        return "add-beer";
+    }
+
+    @PostMapping("/add-beer")
+    public String ajouterBiere (@Validated @ModelAttribute Biere biere, Model pModel)
+    {
+
+        biereRepository.save(biere);
+        return "redirect:/beers";
     }
 
 }
