@@ -18,14 +18,16 @@ public class beersController {
 
     @Autowired
     private BiereRepository biereRepository;
+    @Autowired
     private MarqueRepository marqueRepository;
+    @Autowired
+    private BrasserieRepository brasserieRepository;
 
     @GetMapping("/beers")
     public String getPageExemple(Model pModel)
     {
         ArrayList<Biere> listBeerFromDatabase = (ArrayList<Biere>) biereRepository.findAll();
         pModel.addAttribute("listbeer",listBeerFromDatabase);
-
         return "beers";
     }
 
@@ -35,9 +37,6 @@ public class beersController {
         BiereId bid = new BiereId(new Marque(nomMarque),nomVersion);
         Biere beer = biereRepository.findById(bid).orElseThrow();
         pModel.addAttribute("biere", beer);
-        pModel.addAttribute("marque",bid.getMarque());
-
-
         return "beer";
     }
 
