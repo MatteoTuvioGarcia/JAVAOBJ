@@ -34,29 +34,7 @@ public class ExempleController {
         pModel.addAttribute("prenom","ido");
         //je renvoie le nom de la page dans les ficher html du template
 
-        Pays pays = new Pays();
-        pays.setNomPays("Turkisdétends");
-        pays.setConsommation(15236);
-        pays.setProduction(2);
 
-        Pays pays1 = new Pays();
-        pays1.setNomPays("Turkisdétendsdeuxfois");
-        pays1.setConsommation(5236);
-        pays1.setProduction(200);
-
-        Pays pays2 = new Pays();
-        pays2.setNomPays("Turkisdétendspasdutout");
-        pays2.setConsommation(1526);
-        pays2.setProduction(400);
-
-        ArrayList<Pays> listapays = new ArrayList<>();
-        listapays.add(pays);
-        listapays.add(pays1);
-        listapays.add(pays2);
-
-
-
-        pModel.addAttribute("pays",pays);
 
         ArrayList<Pays> listPaysFromDatabase = (ArrayList<Pays>) paysRepository.findAll();
         pModel.addAttribute("listpays",listPaysFromDatabase);

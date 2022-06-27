@@ -15,7 +15,7 @@
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Brasserie</a>
+    <a class="navbar-brand ps-3" th:href="@{/}">Brasserie</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars"></i></button>
@@ -25,7 +25,6 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Fiche d'une brasserie</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active" th:text="${brasserie.getNomBrasserie()}"></li>
                 </ol>
@@ -35,22 +34,27 @@
                         <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
+                                    Fiche brasserie
                                 </div>
                                 <div class="card-body">
-                                    <form method="GET">
+                                    <form method="POST" th:action="@{/mod-brewery}" th:object="${brasserie}">
                                         <label for="codeBrasserie">Code Brasserie:</label>
-                                        <input type="text" readonly class="form-control my-3" name="codeBrasserie"
+                                        <input type="text" th:field="*{codeBrasserie}" readonly
+                                               class="form-control my-3" name="codeBrasserie"
                                                id="codeBrasserie"
                                                th:value="${brasserie.getCodeBrasserie()}"/>
                                         <label for="nomBrasserie">Nom brasserie:</label>
-                                        <input type="text" class="form-control my-3" name="nomBrasserie"
+                                        <input type="text" th:field="*{nomBrasserie}" class="form-control my-3"
+                                               name="nomBrasserie"
                                                id="nomBrasserie"
                                                th:value="${brasserie.getNomBrasserie()}"/>
                                         <label for="ville">Ville:</label>
-                                        <input type="text" class="form-control my-3" name="ville" id="ville"
+                                        <input type="text" th:field="*{ville}" class="form-control my-3" name="ville"
+                                               id="ville"
                                                th:value="${brasserie.getVille()}"/>
                                         <label for="regionSelect">Région: </label>
-                                        <select name="region" id="regionSelect" class="form-select">
+                                        <select name="region" id="regionSelect" th:field="*{region}"
+                                                class="form-select">
                                             <th:block th:each="region: ${regions}">
                                                 <th:block
                                                         th:if="${region.getNomRegion} == ${brasserie.getRegion.getNomRegion()}">
@@ -65,9 +69,42 @@
                                             </th:block>
                                         </select>
 
-                                        <button type="submit" class="btn-primary form-control my-3">Submit</button>
-
+                                        <button type="submit" class="btn-primary form-control my-3">Modifier</button>
                                     </form>
+                                    <form method="POST" th:action="@{/del-brewery}" th:object="${brasserie}">
+                                        <input type="text" th:field="*{codeBrasserie}" hidden readonly
+                                               class="form-control my-3" name="codeBrasserie"
+                                               id="codeBrasserie"
+                                               th:value="${brasserie.getCodeBrasserie()}"/>
+
+                                        <input type="text" th:field="*{nomBrasserie}" hidden class="form-control my-3"
+                                               name="nomBrasserie"
+                                               id="nomBrasserie"
+                                               th:value="${brasserie.getNomBrasserie()}"/>
+
+                                        <input type="text" th:field="*{ville}" class="form-control my-3" hidden
+                                               name="ville" id="ville"
+                                               th:value="${brasserie.getVille()}"/>
+
+                                        <select name="region" id="regionSelect" hidden th:field="*{region}"
+                                                class="form-select">
+                                            <th:block th:each="region: ${regions}">
+                                                <th:block
+                                                        th:if="${region.getNomRegion} == ${brasserie.getRegion.getNomRegion()}">
+                                                    <option selected th:value="${region.getNomRegion()}"
+                                                            th:text="${region.getNomRegion()}"/>
+                                                </th:block>
+                                                <th:block
+                                                        th:if="${region.getNomRegion} != ${brasserie.getRegion.getNomRegion()}">
+                                                    <option th:value="${region.getNomRegion()}"
+                                                            th:text="${region.getNomRegion()}"/>
+                                                </th:block>
+                                            </th:block>
+                                        </select>
+                                        <button type="submit" class="btn-danger form-control my-3">DELETE</button>
+                                    </form>
+                                    <button class="btn-primary form-control my-3" onclick="history.back()">Retour
+                                    </button>
                                 </div>
                             </div>
                         </div>

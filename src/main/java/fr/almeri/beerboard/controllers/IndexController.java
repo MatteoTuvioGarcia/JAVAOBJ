@@ -2,6 +2,7 @@ package fr.almeri.beerboard.controllers;
 
 import fr.almeri.beerboard.models.Brasserie;
 import fr.almeri.beerboard.models.Region;
+import fr.almeri.beerboard.models.User;
 import fr.almeri.beerboard.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,4 +73,7 @@ public class IndexController {
     public String logout(Model pModel, RedirectAttributes pRedirectAttributes, HttpSession pSession){
         return "redirect:/";
     }
+
+
+
 }

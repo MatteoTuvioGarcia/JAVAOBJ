@@ -30,15 +30,16 @@
                 <h1 class="mt-4">Brasserie</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a th:href="@{/}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Ajouter une bière</li>
+                    <li th:unless="${update}" class="breadcrumb-item active">Ajouter une bière</li>
+                    <li th:if="${update}" class="breadcrumb-item active">Modifier une bière</li>
                 </ol>
                 <div class="card mb-4">
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fa-solid fa-plus"></i>
-                        <span th:if="${update}">Ajouter une bière</span>
-                        <span th:unless="${update}">Modifier une bière</span>
+                        <span th:unless="${update}">Ajouter une bière</span>
+                        <span th:if="${update}">Modifier une bière</span>
                     </div>
                     <div class="card-body">
                         <div class="row">

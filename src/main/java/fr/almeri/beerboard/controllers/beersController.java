@@ -51,11 +51,35 @@ public class beersController {
         pModel.addAttribute("listeType", typeRepository.findAll());
         pModel.addAttribute("listeMarque", marqueRepository.findAll());
 
+
         return "add-beer";
     }
 
     @PostMapping("/add-beer")
     public String ajouterBiere (@Validated @ModelAttribute Biere biere, Model pModel)
+    {
+
+        biereRepository.save(biere);
+        return "redirect:/beers";
+    }
+
+    @GetMapping("/mod-beer")
+    public String GetBeerByCodeMod(Model pModel, @RequestParam String nomMarque, @RequestParam String nomVersion )
+    {
+        // Id bière
+        BiereId idBiere = new BiereId(new Marque(nomMarque),nomVersion);
+
+        pModel.addAttribute("update", true);
+        pModel.addAttribute("biere", biereRepository.findById(idBiere));
+        pModel.addAttribute("listeType", typeRepository.findAll());
+        pModel.addAttribute("listeMarque", marqueRepository.findAll());
+
+
+        return "add-beer";
+    }
+
+    @PostMapping("/mod-beer")
+    public String modifierBiere (@Validated @ModelAttribute Biere biere, Model pModel)
     {
 
         biereRepository.save(biere);

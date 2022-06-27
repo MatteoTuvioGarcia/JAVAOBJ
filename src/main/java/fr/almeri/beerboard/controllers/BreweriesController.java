@@ -23,7 +23,7 @@ public class BreweriesController {
     private RegionRepository regionRepository;
 
     @GetMapping("/breweries")
-    public String getPageExemple(Model pModel)
+    public String getPage(Model pModel)
     {
         ArrayList<Brasserie> listBrassFromDatabase = (ArrayList<Brasserie>) brasserieRepository.findAll();
         pModel.addAttribute("listbrass",listBrassFromDatabase);
@@ -55,12 +55,6 @@ public class BreweriesController {
         return "add-brewery";
     }
 
-    /**
-     * Traitement des données formulaire ajout/modification
-     * @param brasserie
-     * @param model
-     * @return
-     */
     @PostMapping("/add-brewery")
     public String ajouterBrasserie (@Validated @ModelAttribute Brasserie brasserie, Model model)
     {
@@ -70,23 +64,22 @@ public class BreweriesController {
         return "redirect:/breweries";
     }
 
-    /**
-     * Affiche le formulaire en modification en incluant
-     * les données d'une brasserie
-     * @param model
-     * @param code
-     * @return
-     */
-    @GetMapping("/update-brewery/{code}")
-    public String modifierBrasserieForm(Model model,@PathVariable String code)
+    @PostMapping("/mod-brewery")
+    public String ModifierBrasserie (@Validated @ModelAttribute Brasserie brasserie, Model model)
     {
-        model.addAttribute("update", true);
-        model.addAttribute("brasserie", brasserieRepository.findById(code));
-        model.addAttribute("listeRegion", regionRepository.getListeNomRegionObjAsc());
+        // Création d'une brasserie + enregistrement dans la base de données.
+        brasserieRepository.save(brasserie);
 
-        return "brasserie/ajouter";
+        return "redirect:/breweries";
     }
 
+    @PostMapping("/del-brewery")
+    public String SupprimerBrasserie (@Validated @ModelAttribute Brasserie brasserie, Model model)
+    {
+        // suppression d'une brasserie
+        brasserieRepository.delete(brasserie);
+        return "redirect:/breweries";
+    }
 
 
 }

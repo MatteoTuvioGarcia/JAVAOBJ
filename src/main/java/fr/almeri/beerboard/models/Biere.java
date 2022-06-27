@@ -47,6 +47,8 @@ public class Biere implements Serializable{
      * @param tauxAlcool
      * @param caracteristiques
      */
+
+
     public Biere(Marque marque, String version, Type type, String couleurBiere, Double tauxAlcool, String caracteristiques){
 
         this.marque = marque;

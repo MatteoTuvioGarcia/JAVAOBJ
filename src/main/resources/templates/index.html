@@ -15,7 +15,7 @@
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Brasserie</a>
+    <a class="navbar-brand ps-3" th:href="@{/}">Brasserie</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 </nav>
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-primary text-white mb-4">
-                            <div class="card-body" th:text="${bieres} + ' bières référencées'"></div>
+                            <div class="card-body" th:text="${bieres} + ' bibines référencées'"></div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" th:href="@{/beers}">Plus de détails</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -93,7 +93,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-area me-1"></i>
-                                Nombre de bières par taux d'alcool
+                                Nombre de bibines par taux d'alcool
                             </div>
                             <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                             <div class="card-footer small text-muted" th:text="'Dernière mise à jour : ' + ${updated}"></div>
@@ -106,7 +106,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-bar me-1"></i>
-                                Consommation & production de bières par pays
+                                Consommation & production de bibines par pays
                             </div>
                             <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             <div class="card-footer small text-muted" th:text="'Dernière mise à jour : ' + ${updated}"></div>
