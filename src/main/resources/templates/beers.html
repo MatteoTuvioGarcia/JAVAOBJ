@@ -42,7 +42,7 @@
                     <tr th:each="beer: ${listbeer}">
                         <td th:text="${beer.getMarque()}"/>
                         <td th:text="${beer.getVersion()}"/>
-                        <td th:text="${beer.getType()}"/>
+                        <td th:text="${beer.getTypeBiere().getNomType()}"/>
                         <td th:text="${beer.getCouleurBiere()}"/>
                         <td th:text="${beer.getTauxAlcool()}"/>
                         <td th:text="${beer.getCaracteristiques()}"/>

@@ -3,11 +3,12 @@ package fr.almeri.beerboard.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name="brasserie")
-public class Brasserie {
+public class Brasserie implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="code_brasserie")

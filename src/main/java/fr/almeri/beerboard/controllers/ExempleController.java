@@ -25,7 +25,7 @@ public class ExempleController {
     @Autowired
     private RegionRepository regionRepository;
     @Autowired
-    private TypeRepository typeRepository;
+    private TypeBiereRepository typeBiereRepository;
 
     @GetMapping("/example")
     public String getPageExemple(Model pModel)
@@ -44,8 +44,8 @@ public class ExempleController {
         pModel.addAttribute("listmarque",listMarqueFromDatabase);
         ArrayList<Region> listRegionFromDatabase = (ArrayList<Region>) regionRepository.findAll();
         pModel.addAttribute("listregion",listRegionFromDatabase);
-        ArrayList<Type> listTypeFromDatabase = (ArrayList<Type>) typeRepository.findAll();
-        pModel.addAttribute("listtype",listTypeFromDatabase);
+        ArrayList<TypeBiere> listTypeFromDatabaseBiere = (ArrayList<TypeBiere>) typeBiereRepository.findAll();
+        pModel.addAttribute("listtype", listTypeFromDatabaseBiere);
 
         return "example";
     }

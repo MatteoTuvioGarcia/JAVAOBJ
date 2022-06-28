@@ -39,17 +39,17 @@
                                 <div class="card-body">
                                     <form method="POST" th:action="@{/mod-brewery}" th:object="${brasserie}">
                                         <label for="codeBrasserie">Code Brasserie:</label>
-                                        <input type="text" th:field="*{codeBrasserie}" readonly
+                                        <input typeBiere="text" th:field="*{codeBrasserie}" readonly
                                                class="form-control my-3" name="codeBrasserie"
                                                id="codeBrasserie"
                                                th:value="${brasserie.getCodeBrasserie()}"/>
                                         <label for="nomBrasserie">Nom brasserie:</label>
-                                        <input type="text" th:field="*{nomBrasserie}" class="form-control my-3"
+                                        <input typeBiere="text" th:field="*{nomBrasserie}" class="form-control my-3"
                                                name="nomBrasserie"
                                                id="nomBrasserie"
                                                th:value="${brasserie.getNomBrasserie()}"/>
                                         <label for="ville">Ville:</label>
-                                        <input type="text" th:field="*{ville}" class="form-control my-3" name="ville"
+                                        <input typeBiere="text" th:field="*{ville}" class="form-control my-3" name="ville"
                                                id="ville"
                                                th:value="${brasserie.getVille()}"/>
                                         <label for="regionSelect">Région: </label>
@@ -69,20 +69,20 @@
                                             </th:block>
                                         </select>
 
-                                        <button type="submit" class="btn-primary form-control my-3">Modifier</button>
+                                        <button typeBiere="submit" class="btn-primary form-control my-3">Modifier</button>
                                     </form>
                                     <form method="POST" th:action="@{/del-brewery}" th:object="${brasserie}">
-                                        <input type="text" th:field="*{codeBrasserie}" hidden readonly
+                                        <input typeBiere="text" th:field="*{codeBrasserie}" hidden readonly
                                                class="form-control my-3" name="codeBrasserie"
                                                id="codeBrasserie"
                                                th:value="${brasserie.getCodeBrasserie()}"/>
 
-                                        <input type="text" th:field="*{nomBrasserie}" hidden class="form-control my-3"
+                                        <input typeBiere="text" th:field="*{nomBrasserie}" hidden class="form-control my-3"
                                                name="nomBrasserie"
                                                id="nomBrasserie"
                                                th:value="${brasserie.getNomBrasserie()}"/>
 
-                                        <input type="text" th:field="*{ville}" class="form-control my-3" hidden
+                                        <input typeBiere="text" th:field="*{ville}" class="form-control my-3" hidden
                                                name="ville" id="ville"
                                                th:value="${brasserie.getVille()}"/>
 
@@ -101,7 +101,7 @@
                                                 </th:block>
                                             </th:block>
                                         </select>
-                                        <button type="submit" class="btn-danger form-control my-3">DELETE</button>
+                                        <button typeBiere="submit" class="btn-danger form-control my-3">DELETE</button>
                                     </form>
                                     <button class="btn-primary form-control my-3" onclick="history.back()">Retour
                                     </button>

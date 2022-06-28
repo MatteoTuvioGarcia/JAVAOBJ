@@ -25,7 +25,7 @@ public class Biere implements Serializable{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "no_type")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Type type;
+    private TypeBiere typeBiere;
 
     @Column(name = "couleur_biere")
     private String couleurBiere;
@@ -42,18 +42,16 @@ public class Biere implements Serializable{
      *
      * @param marque
      * @param version
-     * @param type
+     * @param typeBiere
      * @param couleurBiere
      * @param tauxAlcool
      * @param caracteristiques
      */
-
-
-    public Biere(Marque marque, String version, Type type, String couleurBiere, Double tauxAlcool, String caracteristiques){
+    public Biere(Marque marque, String version, TypeBiere typeBiere, String couleurBiere, Double tauxAlcool, String caracteristiques){
 
         this.marque = marque;
         this.version = version;
-        this.type = type;
+        this.typeBiere = typeBiere;
         this.couleurBiere = couleurBiere;
         this.tauxAlcool = tauxAlcool;
         this.caracteristiques = caracteristiques;
@@ -90,15 +88,15 @@ public class Biere implements Serializable{
     /**
      * @return Type
      */
-    public Type getType() {
-        return this.type;
+    public TypeBiere getTypeBiere() {
+        return this.typeBiere;
     }
 
     /**
      * @param type
      */
-    public void setType(Type type) {
-        this.type = type;
+    public void setTypeBiere(TypeBiere type) {
+        this.typeBiere = type;
     }
 
     /**
@@ -162,7 +160,7 @@ public class Biere implements Serializable{
         return "Biere{" +
                 "marque=" + this.getMarque() +
                 ", version='" + this.getVersion() + '\'' +
-                ", type=" + this.getType() +
+                ", type=" + this.getTypeBiere() +
                 ", couleurBiere='" + this.getCouleurBiere() + '\'' +
                 ", tauxAlcool=" + this.getTauxAlcool() +
                 ", caracteristiques='" + this.getCaracteristiques() + '\'' +
@@ -175,11 +173,11 @@ public class Biere implements Serializable{
         if (this == o) return true;
         if (!(o instanceof Biere)) return false;
         Biere biere = (Biere) o;
-        return Objects.equals(getMarque(), biere.getMarque()) && Objects.equals(getVersion(), biere.getVersion()) && Objects.equals(getType(), biere.getType()) && Objects.equals(getCouleurBiere(), biere.getCouleurBiere()) && Objects.equals(getTauxAlcool(), biere.getTauxAlcool()) && Objects.equals(getCaracteristiques(), biere.getCaracteristiques()) && Objects.equals(getNoTypeStr(), biere.getNoTypeStr());
+        return Objects.equals(getMarque(), biere.getMarque()) && Objects.equals(getVersion(), biere.getVersion()) && Objects.equals(getTypeBiere(), biere.getTypeBiere()) && Objects.equals(getCouleurBiere(), biere.getCouleurBiere()) && Objects.equals(getTauxAlcool(), biere.getTauxAlcool()) && Objects.equals(getCaracteristiques(), biere.getCaracteristiques()) && Objects.equals(getNoTypeStr(), biere.getNoTypeStr());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMarque(), getVersion(), getType(), getCouleurBiere(), getTauxAlcool(), getCaracteristiques(), getNoTypeStr());
+        return Objects.hash(getMarque(), getVersion(), getTypeBiere(), getCouleurBiere(), getTauxAlcool(), getCaracteristiques(), getNoTypeStr());
     }
 }

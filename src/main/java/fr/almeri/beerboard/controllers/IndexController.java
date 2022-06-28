@@ -1,21 +1,15 @@
 package fr.almeri.beerboard.controllers;
 
-import fr.almeri.beerboard.models.Brasserie;
-import fr.almeri.beerboard.models.Region;
-import fr.almeri.beerboard.models.User;
 import fr.almeri.beerboard.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
 
 
 @Controller
@@ -31,10 +25,12 @@ public class IndexController {
     @Autowired
     private RegionRepository regionRepository;
     @Autowired
-    private TypeRepository typeRepository;
+    private TypeBiereRepository typeBiereRepository;
 
     @GetMapping("/")
-    public String home(Model pModel, HttpSession pSession){
+    public String home(Model pModel, HttpSession pSession, HttpSession session){
+        if (session.getAttribute("auth") != null)
+        {
         pModel.addAttribute("bieres", (int) biereRepository.count() );
         pModel.addAttribute("brasseries", (int) brasserieRepository.count());
         pModel.addAttribute("marque", (int)marqueRepository.count());
@@ -67,12 +63,16 @@ public class IndexController {
         pModel.addAttribute("datasBarChart2", biereRepository.getNbrVerparmarqueAlcoolAsc());
 
         return "index";
+    }else {
+        // Page de connexion
+        return "login";
+    }
     }
 
-    @GetMapping("/logout")
-    public String logout(Model pModel, RedirectAttributes pRedirectAttributes, HttpSession pSession){
-        return "redirect:/";
-    }
+//    @GetMapping("/logout")
+//    public String logout(Model pModel, RedirectAttributes pRedirectAttributes, HttpSession pSession){
+//        return "redirect:/";
+//    }
 
 
 

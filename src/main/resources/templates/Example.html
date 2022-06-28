@@ -95,19 +95,19 @@
 
                 <table class="table table-bordered table-striped">
                     <thead>
-                    <th>code type</th>
-                    <th>nom type</th>
+                    <th>code typeBiere</th>
+                    <th>nom typeBiere</th>
                     <th>description</th>
                     <th>fermentation</th>
                     <th>commentaires</th>
                     </thead>
                     <tbody>
-                    <tr th:each="type: ${listtype}">
-                        <td th:text="${type.getNoType()}"/>
-                        <td th:text="${type.getNomType()}"/>
-                        <td th:text="${type.getDescription()}"/>
-                        <td th:text="${type.getFermentation()}"/>
-                        <td th:text="${type.getCommentaire()}"/>
+                    <tr th:each="typeBiere: ${listtype}">
+                        <td th:text="${typeBiere.getNoType()}"/>
+                        <td th:text="${typeBiere.getNomType()}"/>
+                        <td th:text="${typeBiere.getDescription()}"/>
+                        <td th:text="${typeBiere.getFermentation()}"/>
+                        <td th:text="${typeBiere.getCommentaire()}"/>
                     </tr>
                     </tbody>
                 </table>

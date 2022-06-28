@@ -1,19 +1,21 @@
 package fr.almeri.beerboard.repositories;
 
-import fr.almeri.beerboard.models.Biere;
-import fr.almeri.beerboard.models.Type;
 import fr.almeri.beerboard.models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
 @Repository
-public interface UserRepository extends CrudRepository<User,String> {
+public interface UserRepository extends CrudRepository<User, Integer> {
 
-    @Query("SELECT user FROM User user where user.login = :login")
-    public User findByLogin(@Param("login") String login);
+    @Query("SELECT user from User user WHERE user.login = :login AND user.password = :password")
+    public User getUser(String login, String password);
+//
+    @Query("SELECT user from User user WHERE user.login = :login")
+    public User findByLogin(String login);
 }
+
+
 
