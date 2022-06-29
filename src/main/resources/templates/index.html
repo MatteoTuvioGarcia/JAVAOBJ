@@ -29,6 +29,13 @@
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
                 <div class="row">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${messageerror}">
+                        <span th:text="${messageerror}"></span>
+                    </div>
+
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${messagehtml}">
+                        <span th:text="${messagehtml}"></span>
+                    </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-primary text-white mb-4">
                             <div class="card-body" th:text="${bieres} + ' bibines référencées'"></div>

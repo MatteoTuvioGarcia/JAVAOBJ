@@ -8,8 +8,8 @@
     <meta name="author" content="" />
     <title>Example</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link th:href="${'/css/styles.css'}" rel="stylesheet"/>
-    <link th:href="${'/css/custom.css'}" rel="stylesheet"/>
+    <link th:href="@{~/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{~/css/custom.css}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -28,8 +28,15 @@
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Liste des brasseries</li>
             </ol>
-            <div class="row">
 
+            <div class="row">
+<!--                <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${messageerror}">-->
+<!--                    <span th:text="${messageerror}"></span>-->
+<!--                </div>-->
+
+<!--                <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${messagehtml}">-->
+<!--                    <span th:text="${messagehtml}"></span>-->
+<!--                </div>-->
 
 
                 <table class="table table-bordered table-striped" id="datatablesSimple">
@@ -38,6 +45,7 @@
                     <th>nom</th>
                     <th>ville</th>
                     <th>région</th>
+                    <th>Action</th>
                     </thead>
                     <tbody>
                     <tr th:each="brass: ${listbrass}">
@@ -45,8 +53,8 @@
                         <td th:text="${brass.getNomBrasserie()}"/>
                         <td th:text="${brass.getVille()}"/>
                         <td th:text="${brass.getRegion().getNomRegion()+' - '+brass.getRegion().getNomPays()}"/>
-                        <td>
-                            <a th:href="@{'/see-brewery/' + ${brass.getCodeBrasserie()}}"><img src="/img/oeuil.png" width="20" height="20"/></a>
+                        <td class="align-content-center text-center">
+                            <a  th:href="@{'/see-brewery/' + ${brass.getCodeBrasserie()}}"><button class="btn-primary">Afficher</button></a>
                         </td>
                     </tr>
                     </tbody>

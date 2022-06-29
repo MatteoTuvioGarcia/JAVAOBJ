@@ -27,6 +27,7 @@ public class AuthenticationController {
 
         }else {
             model.addAttribute("isBad", false);
+
             return "login";
         }
 
@@ -36,11 +37,11 @@ public class AuthenticationController {
     @PostMapping("/login")
     public String Authentifier(@ModelAttribute User user, HttpSession session, Model model) throws NoSuchAlgorithmException, NoSuchFieldException, NoSuchProviderException {
 
-        // Vérification au niveau de la base de données.
-        boolean isOk = this.checkPassword(user);
+        // Vérification du mot de passe
+        boolean validPw = this.checkPassword(user);
 
 
-        if (isOk)
+        if (validPw)
         {
             session.setAttribute("auth", user);
             session.setMaxInactiveInterval(600);

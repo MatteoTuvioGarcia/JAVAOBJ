@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link th:href="${'/css/custom.css'}" rel="stylesheet"/>
-    <link th:href="${'/css/styles.css'}" rel="stylesheet"/>
+    <link th:href="@{~/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{~/css/custom.css}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
@@ -30,10 +28,12 @@
                         <form>
                             <label class="form-control">Nom de la marque <input class="right" typeBiere="text" disabled
                                                                                 th:value="${biere.getMarque().getNomMarque()}"/></label>
-                            <label class="form-control">Identifiant de la brasserie <input class="right" typeBiere="text"
+                            <label class="form-control">Identifiant de la brasserie <input class="right"
+                                                                                           typeBiere="text"
                                                                                            disabled
                                                                                            th:value="${biere.getMarque().getBrasserie().getCodeBrasserie()}"/></label>
-                            <label class="form-control">Nom de la brasserie <input class="right" typeBiere="text" disabled
+                            <label class="form-control">Nom de la brasserie <input class="right" typeBiere="text"
+                                                                                   disabled
                                                                                    th:value="${biere.getMarque().getBrasserie().getNomBrasserie()}"/></label>
                             <label class="form-control">Ville <input class="right" typeBiere="text" disabled
                                                                      th:value="${biere.getMarque().getBrasserie().getVille()}"/></label>
@@ -80,15 +80,27 @@
                                                                                th:value="${biere.getTypeBiere().getCommentaire()}"/></label>
                             </form>
 
-                            <form method="GET" th:action="@{/mod-beer}">
-                                <input  th:value="${biere.getMarque().getNomMarque()}" name="nomMarque" hidden>
-                                <input  th:value="${biere.getVersion()}" name="nomVersion" hidden>
-                                <button typeBiere="submit">modify</button>
-                            </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="col-md-12">
+                    <form method="GET" th:action="@{/mod-beer}">
+                        <input th:value="${biere.getMarque().getNomMarque()}" name="nomMarque" hidden>
+                        <input th:value="${biere.getVersion()}" name="nomVersion" hidden>
+                        <button typeBiere="submit" class="btn-primary">Modifier</button>
+                    </form>
+
+                    <form method="POST" th:action="@{/del-beer}">
+                        <input th:value="${biere.getMarque().getNomMarque()}" name="nomMarque" hidden>
+                        <input th:value="${biere.getVersion()}" name="nomVersion" hidden>
+                        <button typeBiere="submit" class="btn-danger">Supprimer</button>
+                    </form>
+                </div>
+
+
         </div>
 
     </div>

@@ -29,6 +29,13 @@
                 <li class="breadcrumb-item active">Liste des bières</li>
             </ol>
             <div class="row">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${messageerror}">
+                    <span th:text="${messageerror}"></span>
+                </div>
+
+                <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${messagehtml}">
+                    <span th:text="${messagehtml}"></span>
+                </div>
                 <table class="table table-bordered table-striped" id="datatablesSimple">
                     <thead>
                     <th>Marque</th>
@@ -37,6 +44,7 @@
                     <th>Couleur</th>
                     <th>Taux alcool</th>
                     <th>Caracteristiques</th>
+                    <th>Action</th>
                     </thead>
                     <tbody>
                     <tr th:each="beer: ${listbeer}">
@@ -46,8 +54,10 @@
                         <td th:text="${beer.getCouleurBiere()}"/>
                         <td th:text="${beer.getTauxAlcool()}"/>
                         <td th:text="${beer.getCaracteristiques()}"/>
-                        <td>
-                            <a th:href="@{/see-beer(nomMarque=${beer.getMarque().getNomMarque()},nomVersion=${beer.getVersion()})}"><img src="/img/oeuil.png" width="20" height="20"/></a>
+                        <td class="align-content-center text-center">
+
+
+                            <a th:href="@{/see-beer(nomMarque=${beer.getMarque().getNomMarque()},nomVersion=${beer.getVersion()})}"><button class="btn-primary">Afficher</button></a>
                         </td>
                     </tr>
                     </tbody>
